@@ -2,6 +2,7 @@ import { useMemo, useState } from "react"
 
 export default function ChangeColorButton(){
     const [buttonColor, setButtonColor] = useState('red');
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
     const buttonText = useMemo(() => {
         if (buttonColor === 'red') return 'Change to blue';
@@ -13,5 +14,13 @@ export default function ChangeColorButton(){
         else if (buttonColor === 'blue') setButtonColor('red');
     }
 
-    return <button style={{backgroundColor : buttonColor}} onClick={handleButtonClick}>{buttonText}</button>
+    return (
+    <>
+        <div>
+            <input type="checkbox" id="checkbox"  onChange={() => setButtonDisabled(!buttonDisabled)}/>
+            <label htmlFor="checkbox">Disable Button</label>
+        </div>
+        <button style={{backgroundColor : buttonColor, color : 'white'}} onClick={handleButtonClick} disabled={buttonDisabled}>{buttonText}</button>
+    </>
+    )
 }

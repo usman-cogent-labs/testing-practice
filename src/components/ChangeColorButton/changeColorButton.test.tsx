@@ -24,4 +24,28 @@ describe("ChangeColorButton", () => {
         expect(changeColorButton.textContent).toBe('Change to red')
     })
 
+    test('to be enbabled initially', () => {
+        render(<ChangeColorButton/>);
+        const colorButton = screen.getByRole('button', {name : /change to blue/i});
+
+        expect(colorButton).toBeEnabled();
+
+        const checkBox = screen.getByRole('checkbox', {name : /disable button/i});
+
+        expect(checkBox).not.toBeChecked();
+    })
+
+    test('to be disabled when checkbox is clicked', () => {
+        render(<ChangeColorButton />);
+        const colorButton = screen.getByRole('button');
+        const checkBox = screen.getByRole('checkbox', { name: /disable button/i });
+
+        fireEvent.click(checkBox);
+        expect(colorButton).toBeDisabled();
+
+        fireEvent.click(checkBox);
+        expect(colorButton).toBeEnabled();
+
+    })
+
 })

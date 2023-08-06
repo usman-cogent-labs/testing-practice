@@ -48,4 +48,13 @@ describe("ChangeColorButton", () => {
 
     })
 
+    test('to be gray when disbaled', () => {
+        render(<ChangeColorButton/>);
+
+        const button = screen.getByRole('button');
+        const checkbox = screen.getByRole('checkbox', {name : /disable button/i});
+
+        fireEvent.click(checkbox);
+        expect(button).toHaveStyle({backgroundColor : 'gray'})
+})
 })

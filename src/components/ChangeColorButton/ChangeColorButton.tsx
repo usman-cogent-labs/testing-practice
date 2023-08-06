@@ -20,7 +20,7 @@ export default function ChangeColorButton(){
             <input type="checkbox" id="checkbox"  onChange={() => setButtonDisabled(!buttonDisabled)}/>
             <label htmlFor="checkbox">Disable Button</label>
         </div>
-        <button style={{backgroundColor : buttonColor, color : 'white'}} onClick={handleButtonClick} disabled={buttonDisabled}>{buttonText}</button>
+        <button style={{backgroundColor : buttonDisabled ? 'gray' : buttonColor, color : 'white'}} onClick={handleButtonClick} disabled={buttonDisabled}>{buttonText}</button>
     </>
     )
 }
